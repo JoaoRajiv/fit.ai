@@ -11,11 +11,14 @@
     "node": "24.x"
   },
   "dependencies": {
+    "@fastify/swagger": "9.7.0",
+    "@fastify/swagger-ui": "5.2.5",
     "@types/node": "^24.11.0",
     "dotenv": "17.3.1",
     "fastify": "5.7.4",
     "fastify-type-provider-zod": "6.1.0",
     "typescript": "5.9.3",
+    "ui@5.2.5": "link:@fastify/swagger/ui@5.2.5",
     "zod": "4.3.6"
   },
   "devDependencies": {
