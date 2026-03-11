@@ -1,5 +1,5 @@
 import { NotFoundError } from "../errors/index.js";
-import { weekDay } from "../generated/prisma/enums.js";
+import { WeekDay } from "../generated/prisma/enums.js";
 import { prisma } from "../lib/db.js";
 
 interface InputDto {
@@ -7,7 +7,7 @@ interface InputDto {
   name: string;
   workoutDays: Array<{
     name: string;
-    weekDay: weekDay;
+    weekDay: WeekDay;
     isRest: boolean;
     estimatedDurationInSeconds: number;
     exercises: Array<{
@@ -45,6 +45,7 @@ export class CreateWorkoutPlan {
       }
       const workoutPlan = await tx.workoutPlan.create({
         data: {
+          id: crypto.randomUUID(),
           name: dto.name,
           userId: dto.userId,
           isActive: true,
