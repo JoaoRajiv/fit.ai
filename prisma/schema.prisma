@@ -34,7 +34,7 @@ model workoutPlan {
   updatedAt   DateTime     @updatedAt
 }
 
-enum weekDay {
+enum WeekDay {
   MONDAY
   TUESDAY
   WEDNESDAY
@@ -50,9 +50,10 @@ model workoutDay {
   workoutPlanId              String
   workoutPlan                workoutPlan       @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
   isRest                     Boolean           @default(false)
-  weekDay                    weekDay
+  weekDay                    WeekDay
   exercises                  workoutExercise[]
   estimatedDurationInSeconds Int
+  coverImageUrl              String?
   createdAt                  DateTime          @default(now())
   updatedAt                  DateTime          @updatedAt
   sessions                   WorkoutSession[]

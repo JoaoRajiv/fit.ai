@@ -2,7 +2,7 @@ import { FastifyInstance } from "fastify";
 import { ErrorSchema, WorkoutPlanSchema } from "../schemas/index.js";
 import { auth } from "../lib/auth.js";
 import { fromNodeHeaders } from "better-auth/node";
-import { CreateWorkoutPlan } from "../usecases/CreateWorkoutPlan.js";
+import { CreateWorkoutPlan, OutputDto } from "../usecases/CreateWorkoutPlan.js";
 import { ZodTypeProvider } from "fastify-type-provider-zod";
 import { NotFoundError } from "../errors/index.js";
 
@@ -32,9 +32,10 @@ export const workoutPlanRoutes = async (app: FastifyInstance) => {
           });
         }
         const createWorkoutPlan = new CreateWorkoutPlan();
-        const result = await createWorkoutPlan.execute({
+        const result: OutputDto = await createWorkoutPlan.execute({
           userId: session.user.id,
           name: request.body.name,
+          coverImageUrl: request.body.coverImageUrl,
           workoutDays: request.body.workoutDays,
         });
         return reply.status(201).send(result);
